@@ -1,0 +1,5 @@
+.idea/
+RDFReader.iml
+derby.log
+metastore_db/
+target/

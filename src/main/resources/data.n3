@@ -1,0 +1,9 @@
+ppl:A foaf:knows ppl:C
+ppl:A foaf:likes ppl:B
+ppl:A foaf:knows ppl:B
+ppl:B foaf:knows ppl:D
+ppl:B foaf:likes ppl:C
+ppl:B foaf:likes ppl:D
+ppl:C foaf:knows ppl:D
+ppl:C foaf:likes ppl:D
+ppl:B foaf:knows ppl:A

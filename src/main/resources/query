@@ -1,0 +1,5 @@
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+SELECT * WHERE {
+?A foaf:likes ?B.
+?A foaf:knows ?C.
+?B foaf:knows ?D.}
