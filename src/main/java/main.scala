@@ -1,7 +1,9 @@
 import QueryReader.QueryReader._
 import RdfReader.RDFReader.readRdf
 import com.hp.hpl.jena.query.QueryFactory
+import com.hp.hpl.jena.sparql.algebra.Algebra
 import org.apache.spark.{SparkConf, SparkContext}
+
 
 object main {
 
@@ -20,7 +22,20 @@ object main {
     val query = QueryFactory.read(args(1).trim)
     val patternRefined = parseQuery(sc,query)
 
+    val op = Algebra.compile(query)
+
+    val prefixes = query.getPrefixMapping
+
+    val opVB = new OperationVisitorBase(prefixes)
+
+    val visitor=  new OperationVisitorByType(opVB)
+    op.visit(visitor)
+
+
+
+
     val queryGraph = readQuery(sc, patternRefined)
+
     val queryGraphEdges = queryGraph.edges.collect()
     val queryGraphVertices = queryGraph.vertices.collect()
 
